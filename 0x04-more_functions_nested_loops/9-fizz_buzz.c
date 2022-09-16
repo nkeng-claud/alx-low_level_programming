@@ -29,15 +29,13 @@ else
 {
 print("%d", x);
 }
-if (x !-100)
+if (x != 100)
 {
 printf(" ");
 }
 }
-print ("\n");
+printf("\n");
 
 return (0);
 
-}
-}
 }
