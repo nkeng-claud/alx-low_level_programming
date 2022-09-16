@@ -6,7 +6,6 @@
  *
  * Return: Always 0 (Success)
  */
-
 int main(void)
 {
 int x;
@@ -27,7 +26,7 @@ printf("Buzz");
 }
 else
 {
-print("%d", x);
+printf("%d", x);
 }
 if (x != 100)
 {
