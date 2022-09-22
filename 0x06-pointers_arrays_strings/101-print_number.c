@@ -10,7 +10,7 @@ unsigned int m, d, count;
 if (n < 0)
 {
 putchar(45);
-m = n * -1:
+m = n * -1;
 }
 else
 {
