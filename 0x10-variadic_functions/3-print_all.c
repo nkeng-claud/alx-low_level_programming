@@ -8,45 +8,42 @@
  */
 void print_all(const char * const format, ...)
 {
-va_list valist;
-unsigned int i = 0, j, c = 0;
-char *str;
-const char t_arg[] = "cifs";
+	va_list list;
+	int x = 0;
+	char *k;
+	char *sep = ", ";
 
-va_start(valist, format);
-while (format && format[i])
-{
-j =  0;
-while (t_arg[j])
-{
-if (format[i] == t_arg[j] && c)
-{
-printf(", ");
-break;
-} j++;
-}
-switch (format[i])
-{
-case 'c':
-printf("%c", va_arg(valist, int)), c = 1;
-break;
-case 'i':
-printf("%d", va_ag(valist, int)), c = 1;
-break;
-case 'f';
-printf("%f", va_arg(valist, double)), c = 1;
-break:
-case 's';
-str = va_arg(valist, char *), c = 1;
-if (!str)
-{
-printf("(nil)");
-break;
-}
-printf("%s", str);
-break;
-} i++;
-}
-printf("\n"), va_end(valist);
-}
+	va_start(list, format);
 
+	while ((format != NULL) && *(format + x) != '\0')
+	{
+		switch (*(format + x))
+		{
+			case 's':  /* string */
+				k = va_arg(list, char *);
+				k = (k != NULL) ? k : "(nil)";
+				printf("%s", k);
+				break;
+			case 'i':  /* int */
+				printf("%i", va_arg(list, int));
+				break;
+			case 'c':  /* char */
+				/* need a cast here since va_arg only takes fully promoted types */
+				printf("%c", va_arg(list, int));
+				break;
+			case 'f':  /* float */
+				printf("%f", va_arg(list, double));
+				break;
+			default:   /* if it does not comply with any of the cases */
+				x++;
+				continue;
+		}
+		if (*(format + x + 1) != 0)
+		{
+			printf("%s", sep);
+		}
+		x++;
+	}
+	putchar(10);
+	va_end(list);
+}
